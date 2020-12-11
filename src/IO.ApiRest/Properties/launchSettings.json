@@ -20,7 +20,7 @@
     "IO.ApiRest": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "api",
       "applicationUrl": "https://localhost:61219;http://localhost:28508",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

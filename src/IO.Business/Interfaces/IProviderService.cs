@@ -6,12 +6,12 @@ namespace IO.Business.Interfaces
 {
     public interface IProviderService : IDisposable
     {
-        Task Add(Provider provider);
+        Task<bool> Add(Provider provider);
 
-        Task Update(Provider provider);
+        Task<bool> Update(Provider provider);
 
-        Task Remove(Guid providerId);
+        Task<bool> Remove(Guid providerId);
 
-        Task UpdateAddress(Address address);
+        Task<bool> UpdateAddress(Address address);
     }
 }
