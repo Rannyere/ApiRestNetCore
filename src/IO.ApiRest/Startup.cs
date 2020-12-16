@@ -35,7 +35,15 @@ namespace IO.ApiRest
                 options.UseMySql(Configuration.GetConnectionString(name: "DefaultConnection"), builder =>
                 builder.MigrationsAssembly("IO.Data")));
 
-            services.AddControllers();
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
             services.ResolveDependencies();
         }

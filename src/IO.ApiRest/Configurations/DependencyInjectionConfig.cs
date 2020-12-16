@@ -17,7 +17,6 @@ namespace IO.ApiRest.Configurations
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProviderRepository, ProviderRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
-            //services.AddSingleton<IValidationAttributeAdapterProvider, CurrencyValidationAttributeAdapterProvider>();
 
             services.AddScoped<INotifier, Notifier>();
             services.AddScoped<IProviderService, ProviderService>();

@@ -25,7 +25,7 @@ namespace IO.Business.Validations
             {
                 RuleFor(p => p.Document.Length).Equal(CnpjValidacao.TamanhoCnpj)
                 .WithMessage("The Document field must be {ComparisonValue} characters and {PropertyValue} has been provided.");
-                RuleFor(p => CpfValidacao.Validar(p.Document)).Equal(true)
+                RuleFor(p => CnpjValidacao.Validar(p.Document)).Equal(true)
                     .WithMessage("Document Invalid.");
             });
         }
