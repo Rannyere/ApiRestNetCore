@@ -30,12 +30,9 @@ namespace IO.ApiRest
                 options.UseMySql(Configuration.GetConnectionString(name: "DefaultConnection"), builder =>
                 builder.MigrationsAssembly("IO.Data")));
 
-            services.Configure<ApiBehaviorOptions>(options =>
-            {
-                options.SuppressModelStateInvalidFilter = true;
-            });
+            services.AddIdentityConfiguration(Configuration);
 
-            services.AddControllers();
+            services.AddApiConfig();
 
             services.ResolveDependencies();
         }
@@ -46,13 +43,18 @@ namespace IO.ApiRest
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

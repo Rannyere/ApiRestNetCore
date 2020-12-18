@@ -82,6 +82,45 @@ namespace IO.ApiRest.Controllers
             return CustomResponse(productViewModel);
         }
 
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateProduct(Guid id, ProductViewModel productViewModel)
+        {
+            if (id != productViewModel.Id)
+            {
+                NotifierError("The IDs entered are not the same!");
+                return CustomResponse();
+            }
+
+            var productUpdate = await GetSpecificProduct(id);
+
+            if (string.IsNullOrEmpty(productViewModel.Image))
+                productViewModel.Image = productUpdate.Image;
+
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
+
+            if (productViewModel.ImageUpload != null)
+            {
+                var imageName = Guid.NewGuid() + "_" + productViewModel.Image;
+                if (!UploadFile(productViewModel.ImageUpload, imageName))
+                {
+                    return CustomResponse(ModelState);
+                }
+
+                productUpdate.Image = imageName;
+            }
+
+            productUpdate.ProviderId = productViewModel.ProviderId;
+            productUpdate.Name = productViewModel.Name;
+            productUpdate.Description = productViewModel.Description;
+            productUpdate.Value = productViewModel.Value;
+            productUpdate.Activ = productViewModel.Activ;
+
+            await _productService.Update(_mapper.Map<Product>(productUpdate));
+
+            return CustomResponse(productViewModel);
+        }
+
+       
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<ProductViewModel>> DeleteProduct(Guid id)
         {

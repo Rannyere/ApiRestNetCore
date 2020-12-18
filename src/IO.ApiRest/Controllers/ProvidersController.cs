@@ -5,10 +5,12 @@ using AutoMapper;
 using IO.ApiRest.DTOs;
 using IO.Business.Interfaces;
 using IO.Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IO.ApiRest.Controllers
 {
+    [Authorize]
     [Route("api/providers")]
     public class ProvidersController : MainController
     {
@@ -29,6 +31,7 @@ namespace IO.ApiRest.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IEnumerable<ProviderViewModel>> SearchAll()
         {

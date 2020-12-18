@@ -6,7 +6,7 @@ namespace IO.Data.Context
 {
     public class ControlDbContext : DbContext
     {
-        public ControlDbContext(DbContextOptions options) : base (options)
+        public ControlDbContext(DbContextOptions<ControlDbContext> options) : base (options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.AutoDetectChangesEnabled = false;
