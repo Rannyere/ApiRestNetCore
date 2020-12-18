@@ -30,11 +30,9 @@ namespace IO.ApiRest.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProviderViewModel>>> SearchAll()
+        public async Task<IEnumerable<ProviderViewModel>> SearchAll()
         {
-            var providers = _mapper.Map<IEnumerable<ProviderViewModel>>(await _providerRepository.SearchAll());
-
-            return Ok(providers);
+            return _mapper.Map<IEnumerable<ProviderViewModel>>(await _providerRepository.SearchAll());
         }
 
         [HttpGet("{id:guid}")]

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace IO.ApiRest.DTOs
 {
-    public class ProductViewModel
+    public class ProductImageViewModel
     {
         [Key]
         public Guid Id { get; set; }
@@ -21,7 +22,7 @@ namespace IO.ApiRest.DTOs
         [StringLength(1000, ErrorMessage = "The field {0} must be between {2} e {1} characteres", MinimumLength = 2)]
         public string Description { get; set; }
 
-        public string ImageUpload { get; set; }
+        public IFormFile ImageUpload { get; set; }
 
         public string Image { get; set; }
 
