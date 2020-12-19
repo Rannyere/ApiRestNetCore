@@ -7,6 +7,7 @@ using IO.Business.Interfaces;
 using IO.Business.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static IO.ApiRest.Extensions.CustomAuthorize;
 
 namespace IO.ApiRest.Controllers
 {
@@ -48,6 +49,7 @@ namespace IO.ApiRest.Controllers
             return provider;
         }
 
+        [ClaimsAuthorize("Provider","Add")]
         [HttpPost]
         public async Task<ActionResult<ProviderViewModel>> Create(ProviderViewModel providerViewModel)
         {
@@ -58,6 +60,7 @@ namespace IO.ApiRest.Controllers
             return CustomResponse(providerViewModel);
         }
 
+        [ClaimsAuthorize("Provider", "Update")]
         [HttpPut("{id:guid}")]
         public async Task<ActionResult<ProviderViewModel>> Update(Guid id, ProviderViewModel providerViewModel)
         {
@@ -74,6 +77,7 @@ namespace IO.ApiRest.Controllers
             return CustomResponse(providerViewModel);
         }
 
+        [ClaimsAuthorize("Provider", "Delete")]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<ProviderViewModel>> Delete(Guid id)
         {
@@ -86,12 +90,14 @@ namespace IO.ApiRest.Controllers
             return CustomResponse(providerViewModel);
         }
 
+        
         [HttpGet("get-address/{id:guid}")]
         public async Task<AddressViewModel> GetAddressById(Guid id)
         {
             return _mapper.Map<AddressViewModel>(await _addressRepository.GetAddressByProvider(id));
         }
 
+        [ClaimsAuthorize("Provider", "Update")]
         [HttpPut("update-address/{id:guid}")]
         public async Task<ActionResult> UpdateAddress(Guid id, AddressViewModel addressViewModel)
         {
