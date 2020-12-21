@@ -6,11 +6,14 @@ using AutoMapper;
 using IO.ApiRest.DTOs;
 using IO.Business.Interfaces;
 using IO.Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static IO.ApiRest.Extensions.CustomAuthorize;
 
 namespace IO.ApiRest.Controllers
 {
+    [Authorize]
     [Route("api/products")]
     public class ProductsController : MainController
     {
@@ -47,6 +50,7 @@ namespace IO.ApiRest.Controllers
             return productViewModel;
         }
 
+        [ClaimsAuthorize("Product","Add")]
         [HttpPost]
         public async Task<ActionResult<ProductViewModel>> AddProduct(ProductViewModel productViewModel)
         {
@@ -63,6 +67,7 @@ namespace IO.ApiRest.Controllers
             return CustomResponse(productViewModel);
         }
 
+        [ClaimsAuthorize("Product", "Add")]
         [RequestSizeLimit(40000000)]
         //[DisableRequestSizeLimit]
         [HttpPost("large-image")]
@@ -82,6 +87,7 @@ namespace IO.ApiRest.Controllers
             return CustomResponse(productViewModel);
         }
 
+        [ClaimsAuthorize("Product", "Update")]
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> UpdateProduct(Guid id, ProductViewModel productViewModel)
         {
@@ -120,7 +126,7 @@ namespace IO.ApiRest.Controllers
             return CustomResponse(productViewModel);
         }
 
-       
+        [ClaimsAuthorize("Product", "Delete")]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<ProductViewModel>> DeleteProduct(Guid id)
         {

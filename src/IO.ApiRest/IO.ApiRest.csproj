@@ -5,6 +5,7 @@
   </PropertyGroup>
 
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Custom' " />
   <ItemGroup>
     <Folder Include="DTOs\" />
     <Folder Include="Extensions\" />

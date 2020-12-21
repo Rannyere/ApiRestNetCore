@@ -1,9 +1,11 @@
 ﻿using System;
+using IO.ApiRest.Extensions;
 using IO.Business.Interfaces;
 using IO.Business.Notifications;
 using IO.Business.Services;
 using IO.Data.Context;
 using IO.Data.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +23,9 @@ namespace IO.ApiRest.Configurations
             services.AddScoped<INotifier, Notifier>();
             services.AddScoped<IProviderService, ProviderService>();
             services.AddScoped<IProductService, ProductService>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUser, AspNetUser>();
 
             return services;
         }
