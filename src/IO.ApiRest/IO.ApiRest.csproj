@@ -16,6 +16,8 @@
     <Folder Include="V1\" />
     <Folder Include="V1\Controllers\" />
     <Folder Include="Controllers\" />
+    <Folder Include="V2\" />
+    <Folder Include="V2\Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IO.Business\IO.Business.csproj">
@@ -39,5 +41,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 </Project>
