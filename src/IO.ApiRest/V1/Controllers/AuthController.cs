@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using IO.ApiRest.Controllers;
 using IO.ApiRest.DTOs;
 using IO.ApiRest.Extensions;
 using IO.Business.Interfaces;
@@ -12,9 +13,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace IO.ApiRest.Controllers
+namespace IO.ApiRest.v1.Controllers
 {
-    [Route("api/account")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/account")]
     public class AuthController : MainController
     {
         private readonly SignInManager<IdentityUser> _signInManager;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
+using IO.ApiRest.Controllers;
 using IO.ApiRest.DTOs;
 using IO.Business.Interfaces;
 using IO.Business.Models;
@@ -11,10 +12,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static IO.ApiRest.Extensions.CustomAuthorize;
 
-namespace IO.ApiRest.Controllers
+namespace IO.ApiRest.v1.Controllers
 {
     [Authorize]
-    [Route("api/products")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/products")]
     public class ProductsController : MainController
     {
         private readonly IProductRepository _productRepository;
