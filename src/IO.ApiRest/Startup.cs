@@ -37,6 +37,8 @@ namespace IO.ApiRest
 
             services.AddSwaggerConfig();
 
+            services.AddLoggingConfig(Configuration);
+
             services.ResolveDependencies();
         }
 
@@ -61,6 +63,8 @@ namespace IO.ApiRest
             app.UseAuthorization();
 
             app.UseSwaggerConfig(provider);
+
+            app.UseLoggingConfiguration();
 
             app.UseEndpoints(endpoints =>
             {
