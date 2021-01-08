@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>454362dc-9e31-4e3e-b3c2-815e94adb23</UserSecretsId>
   </PropertyGroup>
 
 
@@ -48,5 +49,6 @@
     <PackageReference Include="AspNetCore.HealthChecks.UI" Version="3.1.2" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.2" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.10" />
   </ItemGroup>
 </Project>
